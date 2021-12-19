@@ -5,6 +5,7 @@ var startTime = 30;
 var intervalID;
 var time;
 var currentQuestion;
+var savedCard;
 
 //Array of questions for the quiz
 const questions = [
@@ -139,43 +140,46 @@ function checkAnswer(eventObject) {
   }
 }
 
+// Done
 function endQuiz() {
-  scoreCard.setAttribute("hidden", false);
+  questionCard.setAttribute("hidden", true);
+  scoreCard.removeAttribute("hidden");
+  clearInterval(intervalID);
 }
 
 //Update the leaderboard on local storage
 function updateStoredLeaderboard(leaderboardItem) {
-    let leaderboardArray = getLeaderboard();
-    leaderboardArray.push(leaderboardItem);
-    localStorage.setItem("leaderboardArray", JSON.stringify(leaderboardArray));
-  }
+  let leaderboardArray = getLeaderboard();
+  leaderboardArray.push(leaderboardItem);
+  localStorage.setItem("leaderboardArray", JSON.stringify(leaderboardArray));
+}
 
-  //Access locally stored leaderboard and transform into a javascript object
-  function getLeaderboard() {
-    let storedLeaderboard = localStorage.getItem("leaderboardArray");
-    if (storedLeaderboard !== null) {
-      let leaderboardArray = JSON.parse(storedLeaderboard);
-      return leaderboardArray;
-    } else {
-      leaderboardArray = [];
-    }
+//Access locally stored leaderboard and transform into a javascript object
+function getLeaderboard() {
+  let storedLeaderboard = localStorage.getItem("leaderboardArray");
+  if (storedLeaderboard !== null) {
+    let leaderboardArray = JSON.parse(storedLeaderboard);
     return leaderboardArray;
-  }
-  
-  //Display the leaderboard on the leaderboard card
-  function renderLeaderboard() {
-    let sortedLeaderboardArray = sortLeaderboard();
-    const highscoreList = document.querySelector("#highscore-list");
-    highscoreList.innerHTML = "";
-    for (let i = 0; i < sortedLeaderboardArray.length; i++) {
-      let leaderboardEntry = sortedLeaderboardArray[i];
-      let newListItem = document.createElement("li");
-      newListItem.textContent =
-        leaderboardEntry.initials + " - " + leaderboardEntry.score;
-      highscoreList.append(newListItem);
-    }
-  }
+  } else {
+    let leaderboardArray = [];
+    return leaderboardArray;
+  }  
+}
 
+//Display the leaderboard on the leaderboard card
+function renderLeaderboard() {
+  //let sortedLeaderboardArray = sortLeaderboard();
+
+  const highscoreList = document.querySelector("#highscore-list");
+  highscoreList.innerHTML = "";
+  for (let i = 0; i < leaderboardArray.length; i++) {
+    let leaderboardEntry = leaderboardArray[i];
+    let newListItem = document.createElement("li");
+    newListItem.textContent =
+      leaderboardEntry.initials + " - " + leaderboardEntry.score;
+    highscoreList.append(newListItem);
+  }
+}
 
 //Clear the leaderboard and local storage
 const clearButton = document.querySelector("#clear-btn");
@@ -185,14 +189,17 @@ function clearHighscores() {
   renderLeaderboard();
 }
 
-//Display the leaderboard
-var leaderboardBtn = document.querySelector("#leaderboard");
-leaderboardBtn.addEventListener("click", leaderboardDisplay);
+//Save score and display the leaderboard
+var submitBtn = document.querySelector("#submit-btn");
+submitBtn.addEventListener("click", leaderboardDisplay);
 
-var leaderboardDisplay = function() {
-    leaderboardCard.setAttribute("hidden", false);
+//var leaderboardDisplay = function() {
+function leaderboardDisplay() {
+  updateStoredLeaderboard(document.getElementById("initials").value);
+  hideCards();
+  leaderboardCard.removeAttribute("hidden");
+  renderLeaderboard();
 }
-
 
 //Return to starting page
 const backBtn = document.querySelector("#back-btn");
