@@ -72,6 +72,8 @@ function setTime() {
 
 //Let's get things started!
 document.querySelector("#start-btn").addEventListener("click", startQuiz);
+const resultDiv = document.getElementById("result-div");
+const resultText = document.getElementById("result-text");
 
 function startQuiz() {
     hideCards();
@@ -86,7 +88,21 @@ function startQuiz() {
   
     intervalID = setInterval(countdown, 1000);
 }
-  
+
+// Populate the question and options from questions[]
+function displayQuestion() {
+  document.getElementById("question-text").textContent = questions[currentQuestion].questionText;
+  document.getElementById("option0").textContent = questions[currentQuestion].answerOptions[0];
+  document.getElementById("option1").textContent = questions[currentQuestion].answerOptions[1];
+  document.getElementById("option2").textContent = questions[currentQuestion].answerOptions[2];
+  document.getElementById("option3").textContent = questions[currentQuestion].answerOptions[3];
+}
+
+// Hide and display the result
+function hideResultText() {
+  resultText.removeAttribute("hidden");
+}
+
 //Have the counter counting down, then stopping at the end
 function countdown() {
     time--;
@@ -107,7 +123,7 @@ document.querySelector("#quiz-options").addEventListener("click", checkAnswer);
 
 //Check for correct answer and penalise if incorrent
 function optionIsCorrect(optionButton) {
-    return optionButton.textContent === questions[currentQuestion].answer;
+    return optionButton.textContent === questions[currentQuestion].correctAnswer;
   }
 
 function checkAnswer(eventObject) { 
