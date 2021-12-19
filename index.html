@@ -8,8 +8,32 @@
     <title>JavaScript Fundamentals - Timed Quiz</title>
 </head>
 <body>
+    
+    <!-- Header box with high score and time-->
     <header class="HeaderBox">
-
+        <a id=leaderboard>View High Scores</a> 
+        <time>Time: <span id="time"></span></time>
     </header>
+    
+    <main>
+    <!-- Instruction page  seen when first opening webpage -->
+        <div id=start-card class="card">
+            <h2 id=title>JavaScript Fundamentals - Timed Quiz</h2>
+            <p>Try to answer six questions about JavaScript before the timer runs down 
+            <br>
+            <br>
+            //ou will receive a time penalty for each incorrent answer</p>
+            <button id=start-button class="button">Start Quiz</button>
+        </div>
+
+
+    </main>
+
+<footer>
+    <h3>Made with blood, sweat and JavaScript</h3>
+</footer>
+
+
+    <script src="script.js"></script>
 </body>
 </html>

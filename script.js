@@ -1,4 +1,5 @@
-
+//To start the quiz
+// #start-button .button
 
 //Array of questions for the quiz
 const questions = [
@@ -37,6 +38,7 @@ const questions = [
 
 
 //Timer
-
+//span id = time
 
 //High scores
+//leaderboard - View Highscores button
