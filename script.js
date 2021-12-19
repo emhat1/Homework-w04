@@ -182,7 +182,7 @@ function clearHighscores() {
 }
 
 //Display the leaderboard
-var leaderboardBtn = document.querySelector(".leaderboard");
+var leaderboardBtn = document.querySelector("#leaderboard");
 leaderboardBtn.addEventListener("click", leaderboardDisplay);
 
 var leaderboardDisplay = function() {
