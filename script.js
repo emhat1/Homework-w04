@@ -55,21 +55,6 @@ function hideCards() {
   leaderboardCard.setAttribute("hidden", true);
 }
 
-//Timer function
-function setTime() {
-    let timerInterval = setInterval(function () {
-        secondsLeft--;
-        timeEl.textContent = `Time:${secondsLeft}s`;
-
-        if (secondsLeft === 0 || questionCount === questions.length) {
-            clearInterval(timerInterval);
-            questionsEl.style.display = "none";
-            finalEl.style.display = "block";
-            scoreEl.textContent = secondsLeft;
-        }
-    }, 1000);
-}
-
 //Let's get things started!
 document.querySelector("#start-btn").addEventListener("click", startQuiz);
 const resultDiv = document.getElementById("result-div");
@@ -154,6 +139,9 @@ function checkAnswer(eventObject) {
   }
 }
 
+function endQuiz() {
+  scoreCard.setAttribute("hidden", false);
+}
 
 //Update the leaderboard on local storage
 function updateStoredLeaderboard(leaderboardItem) {
