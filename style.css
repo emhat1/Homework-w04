@@ -1,19 +1,42 @@
-.HeaderBox {
-    background-color: cornflowerblue;
-    color: black;
-    font-family: 'Times New Roman', Times, serif;
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: cornsilk;
 }
-
-main {
-
-}
-
 
 footer {
-    display: flex;
-    text-align: center;
+    display: block;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
     background-color: cornflowerblue;
     color: black;
+    padding: 10%;
     font-family: 'Times New Roman', Times, serif;
 }
 
+.HeaderBox {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: cornflowerblue;
+    color: black;
+    font-size: 150%;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.btn {
+    display: block;
+    background-color: cornflowerblue;
+    color: black;
+    padding: 2px;
+    border-radius: 8px;
+    border: black;
+}
+
+.btn:hover {
+    box-shadow: 20px 20px 10px slategrey;
+}

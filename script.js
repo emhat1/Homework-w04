@@ -1,6 +1,10 @@
 //To start the quiz
 // #start-button .button
 
+//Setting start parameters
+let score=0;
+let timer=25;
+
 //Array of questions for the quiz
 const questions = [
     {
@@ -38,6 +42,19 @@ const questions = [
 
 
 //Timer
+function setTime() {
+    let timerInterval = setInterval(function () {
+        secondsLeft--;
+        timeEl.textContent = `Time:${secondsLeft}s`;
+
+        if (secondsLeft === 0 || questionCount === questions.length) {
+            clearInterval(timerInterval);
+            questionsEl.style.display = "none";
+            finalEl.style.display = "block";
+            scoreEl.textContent = secondsLeft;
+        }
+    }, 1000);
+}
 //span id = time
 
 //High scores
