@@ -26,6 +26,7 @@ footer {
     font-size: 150%;
     font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
+    padding: 5%;
 }
 
 .btn {
@@ -37,6 +38,36 @@ footer {
     border: black;
 }
 
+.inline-btn {
+    display: inline-flex;
+  }
+
 .btn:hover {
     box-shadow: 20px 20px 10px slategrey;
 }
+
+.card {
+    max-width: 80%;
+    margin-top: 10%;
+    border: solid;
+    border-width: 2px;
+    padding: 5%;
+    border-radius: 30px;
+    border-color: black;
+  }
+ 
+ #start-screen {
+    display: inline;
+    text-align: center;
+  }
+
+.option-btn {
+    width: 100%;
+    text-align: left;
+    margin: 5px;
+  }
+  
+#result-div {
+    display: none;
+  }
+  
