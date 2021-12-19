@@ -10,6 +10,7 @@ header {
     padding: 15px;
 }
 
+
 main {
     display: flex;
     align-items: center;
@@ -41,12 +42,12 @@ footer {
   }
 
 .btn:hover {
-    box-shadow: 20px 20px 10px slategrey;
+    box-shadow: 5px 5px 10px slategrey;
 }
 
 .card {
     max-width: 80%;
-    margin-top: 10px;
+    margin: 30px;
     border: solid;
     border-width: 2px;
     padding: 5%;
@@ -69,3 +70,13 @@ footer {
     display: none;
   }
   
+  header button {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: cornflowerblue;
+    color: black;
+    font-size: 100%;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}

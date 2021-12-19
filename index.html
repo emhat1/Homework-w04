@@ -11,51 +11,50 @@
     
     <!-- Header box with high score and time-->
     <header>
-        <a id=leaderboard>View High Scores</a> 
-        <time>Time: <span id="time"></span></time>
+        <button id="leaderboard">View High Scores</button> 
+        <time>Time: <span id="time" placeholder="0"> </span></time>
     </header>
-<p></p>
 
     <main>
     <!-- Instruction page seen when first opening webpage -->
-        <div id=start-card class="card">
-            <h2 id=title>JavaScript Fundamentals - Timed Quiz</h2>
+        <div id="start-card" class="card">
+            <h2 id="title">JavaScript Fundamentals - Timed Quiz</h2>
             <p>Try to answer six questions about JavaScript before the timer runs down 
             <br>
             <br>
             You will receive a time penalty for each incorrent answer</p>
-            <button id=start-btn class="btn">Start Quiz</button>
+            <button id="start-btn" class="btn">Start Quiz</button>
         </div>
 
 
-        <div hidden id=question-card class="card">
+        <div hidden id="question-card" class="card">
 
-            <h2 id=question-text></h2>
+            <h2 id="question-text"></h2>
 
-            <div id=quiz-options>
-                <button id=option0 class="btn option-btn"></button>
-                <button id=option1 class="btn option-btn"></button>
-                <button id=option2 class="btn option-btn"></button>
-                <button id=option3 class="btn option-btn"></button>
+            <div id="quiz-options">
+                <button id="option0" class="btn option-btn"></button>
+                <button id="option1" class="btn option-btn"></button>
+                <button id="option2" class="btn option-btn"></button>
+                <button id="option3" class="btn option-btn"></button>
             </div>
 
-            <div id=result-div>
-                <p id=result-text></p>
+            <div id="result-div">
+                <p id="result-text"></p>
             </div>
 
         </div>
 
-        <div hidden id=score-card class="card">
+        <div hidden id="score-card" class="card">
             <h2>The test is complete</h2>
-            <p>Your final score is <span id=score></span></p>
+            <p>Your final score is <span id="score"></span></p>
             <form class="inline-form" id="submission-form">
-                  <label for="initials">Enter your initials: </label>
+                  <label form="initials">Enter your initials: </label>
                   <input type="text" id="initials">
                   <button id="submit-btn" class="btn">Submit</button>
             </form>
         </div>
 
-        <div hidden id=leaderboard-card class="card">
+        <div hidden id="leaderboard-card" class="card">
             <h2>Highscores</h2>
             <ol id="highscore-list">
             </ol>
@@ -67,10 +66,9 @@
 
     </main>
 
-<p></p>
 
 <footer>
-    <h3>Made with blood, sweat and JavaScript</h3>
+    <h4>Made with blood, sweat and JavaScript</h4>
 </footer>
 
 <script src="script.js"></script>
