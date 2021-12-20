@@ -5,7 +5,6 @@ var startTime = 30;
 var intervalID;
 var time;
 var currentQuestion;
-var savedCard;
 
 //Array of questions for the quiz
 const questions = [
@@ -63,6 +62,7 @@ const resultText = document.getElementById("result-text");
 
 function startQuiz() {
     hideCards();
+    userScore = 0;
     questionCard.removeAttribute("hidden");
   
     //Assign numbers to questions (to allow cycling through)
@@ -109,27 +109,28 @@ document.querySelector("#quiz-options").addEventListener("click", checkAnswer);
 
 //Check for correct answer and penalise if incorrent
 function optionIsCorrect(optionButton) {
-    return optionButton.textContent === questions[currentQuestion].correctAnswer;
-  }
+  return optionButton.textContent === questions[currentQuestion].correctAnswer;
+}
 
 function checkAnswer(eventObject) { 
-    let optionBtn = eventObject.target;
-    resultDiv.style.display = "block";
-    if (optionIsCorrect(optionBtn)) {
-      resultText.textContent = "That's right";
-      setTimeout(hideResultText, 1000);
-        } else {
-      resultText.textContent = "That's not right";
-      setTimeout(hideResultText, 1000);
-      if (time >= 5) {
-        time = time-5;
-        displayTime();
+  let optionBtn = eventObject.target;
+  resultDiv.style.display = "block";
+  if (optionIsCorrect(optionBtn)) {
+    resultText.textContent = "That's right";
+    userScore ++;
+    setTimeout(hideResultText, 1000);
       } else {
-            time = 0;
-            displayTime();
-            endQuiz();
-        }
-    }
+    resultText.textContent = "That's not right";
+    setTimeout(hideResultText, 1000);
+    if (time >= 5) {
+      time = time-5;
+      displayTime();
+  } else {
+    time = 0;
+    displayTime();
+    endQuiz();
+  }
+}
   
 //Increment current question by 1, continue until all questions used
   currentQuestion++;
@@ -143,6 +144,7 @@ function checkAnswer(eventObject) {
 // Done
 function endQuiz() {
   questionCard.setAttribute("hidden", true);
+  document.getElementById("score").textContent = userScore;
   scoreCard.removeAttribute("hidden");
   clearInterval(intervalID);
 }
@@ -169,14 +171,14 @@ function getLeaderboard() {
 //Display the leaderboard on the leaderboard card
 function renderLeaderboard() {
   //let sortedLeaderboardArray = sortLeaderboard();
-
+  let leaderboardArray = getLeaderboard();
   const highscoreList = document.querySelector("#highscore-list");
   highscoreList.innerHTML = "";
   for (let i = 0; i < leaderboardArray.length; i++) {
     let leaderboardEntry = leaderboardArray[i];
     let newListItem = document.createElement("li");
     newListItem.textContent =
-      leaderboardEntry.initials + " - " + leaderboardEntry.score;
+      leaderboardEntry.initials + " - " + leaderboardEntry.score + " of " + questions.length;
     highscoreList.append(newListItem);
   }
 }
@@ -193,12 +195,16 @@ function clearHighscores() {
 var submitBtn = document.querySelector("#submit-btn");
 submitBtn.addEventListener("click", leaderboardDisplay);
 
-//var leaderboardDisplay = function() {
 function leaderboardDisplay() {
-  updateStoredLeaderboard(document.getElementById("initials").value);
+  var leaderboardEntry = {
+    initials:document.getElementById("initials").value, 
+    score:userScore
+  }
+  //updateStoredLeaderboard(document.getElementById("initials").value);
+  updateStoredLeaderboard(leaderboardEntry);
+  renderLeaderboard();
   hideCards();
   leaderboardCard.removeAttribute("hidden");
-  renderLeaderboard();
 }
 
 //Return to starting page
